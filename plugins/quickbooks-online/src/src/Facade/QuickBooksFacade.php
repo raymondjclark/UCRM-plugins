@@ -283,7 +283,18 @@ class QuickBooksFacade
 			        ],
                             ],
                     ];
-                }
+                            if ($item['discountTotal'] < 0) {
+                                $lines[] = [
+                                  'Amount' => $item['discountTotal'] * -1,
+                                  'DiscountLineDetail' => [
+                                        'PercentBased' => 'false'
+                                        ],
+                                  'DetailType' => 'DiscountLineDetail',
+                                  'Description' =>  "Discount given",
+                                ];
+                         }
+
+		}
             }
 
             try {
